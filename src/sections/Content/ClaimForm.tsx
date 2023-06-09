@@ -115,7 +115,7 @@ export const ClaimForm: FC = () => {
               placeholder="Enter your Pudge wallet address"
               className="text-gray-800 placeholder:text-gray-400 text-sm rounded py-3 px-2 w-full"
             />
-            {!!values.addressHash && (
+            {!!values.addressHash && !!errors.addressHash && (
               <div className="text-sm text-red mt-4">{errors.addressHash}</div>
             )}
           </div>
@@ -218,7 +218,7 @@ export const ClaimForm: FC = () => {
       <button
         type="submit"
         disabled={!canSubmit}
-        className={`w-40 h-10 flex justify-center items-center rounded ${
+        className={`w-30 lg:w-40 h-10 flex justify-center items-center rounded ${
           canSubmit ? "bg-purple mt-9 lg:mt-11" : "bg-purple.disabled"
         }`}
       >

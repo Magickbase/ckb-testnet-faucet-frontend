@@ -6,7 +6,7 @@ import numeral from "numeral";
 export const Content: FC = () => {
   const { data: balance } = useOfficialAccountBalance();
   return (
-    <section className="bg-[url('/background.jpg')] bg-[50%] bg-cover h-[606px] lg:h-[648px] flex flex-col items-center text-white px-4 w-full">
+    <section className="bg-[url('/background.jpg')] bg-[50%] bg-cover h-[582px] lg:h-[648px] flex flex-col items-center text-white px-4 w-full">
       <img
         className="w-[80px] h-[80px] lg:w-[120px] lg:h-[120px] mb-8 mt-[56px] lg:mt-[104px]"
         alt="Nervos"
@@ -23,7 +23,7 @@ export const Content: FC = () => {
       <ClaimForm />
       <div
         className={
-          "mt-4 lg:mt-6 text-sm text-gray-200 " +
+          "mt-4 lg:mt-6 text-sm text-gray-200 font-normal" +
           (parseInt(balance) !== 0 ? "visible" : "invisible")
         }
       >
