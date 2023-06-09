@@ -15,7 +15,7 @@ import axios from "axios";
 
 const ERROR_MESSAGES = {
   INSUFFICIENT:
-    "Your claimable amount for this month is 0 and will be replenished on the 1st of next month, please switch an address.",
+    "The CKB received at this address has reached 300,000 CKB for this month. Please retry after the 1st of next month.",
   INVALID_ADDRESS: "Invalid address",
 };
 

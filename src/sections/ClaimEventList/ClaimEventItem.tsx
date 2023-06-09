@@ -15,7 +15,7 @@ export const ClaimEventItem: FC<ClaimEventItemProps> = ({ event }) => {
     <div className="flex flex-col rounded border w-full mb-4">
       <div className="flex justify-between px-8 py-4 text-sm bg-gray-50 border-b border-r-gray-200">
         <a
-          href={`${TESTNET_HOST}/transaction/${txHash}`}
+          href={txHash ? `${TESTNET_HOST}/transaction/${txHash}` : "#"}
           className="text-purple font-medium w-[calc(100%-168px)]"
         >
           {txHash ? <EllipsisText text={txHash} /> : "-"}
@@ -24,7 +24,7 @@ export const ClaimEventItem: FC<ClaimEventItemProps> = ({ event }) => {
           {dayjs.unix(timestamp).format("YYYY/MM/DD HH:mm:ss")}
         </div>
       </div>
-      <div className="flex flex-col justify-between text-sm bg-white px-8 py-6">
+      <div className="flex flex-col justify-between text-sm bg-white px-8 py-5">
         <div className="flex justify-between w-full">
           <a
             href={`${TESTNET_HOST}/address/${addressHash}`}
