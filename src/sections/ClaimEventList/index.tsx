@@ -10,8 +10,8 @@ export const ClaimEventList: FC = () => {
   return (
     <div className="px-4 w-full flex justify-center">
       <div className="w-full max-w-[880px]">
-        <div className="flex justify-between w-full items-center py-8">
-          <h2 className=" text-3xl">Claims</h2>
+        <div className="flex justify-between w-full items-center py-6 lg:py-8">
+          <h2 className="text-xl lg:text-3xl">Claims</h2>
           <div className="relative">
             <input
               placeholder="Search Address"

@@ -99,11 +99,11 @@ export const ClaimForm: FC = () => {
 
   return (
     <form onSubmit={handleSubmit} className="flex flex-col items-center w-full">
-      <div className="w-full max-w-[524px] lg:ml-[-22px]">
-        <div className="flex items-center mb-8 flex-wrap">
+      <div className="w-full max-w-[524px] lg:ml-[-72px]">
+        <div className="flex mb-8 flex-wrap">
           <label
             htmlFor="addressHash"
-            className="inline-block text-sm mr-4 w-full mb-2 lg:w-18 lg:text-end lg:mb-0"
+            className="flex items-center text-sm mr-4 w-full lg:h-9 mb-2 lg:w-18 lg:text-end lg:mb-0"
           >
             To address
           </label>
@@ -219,7 +219,7 @@ export const ClaimForm: FC = () => {
         type="submit"
         disabled={!canSubmit}
         className={`w-40 h-10 flex justify-center items-center rounded ${
-          canSubmit ? "bg-purple mt-11" : "bg-purple.disabled"
+          canSubmit ? "bg-purple mt-9 lg:mt-11" : "bg-purple.disabled"
         }`}
       >
         Claim
