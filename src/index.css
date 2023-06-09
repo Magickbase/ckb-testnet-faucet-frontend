@@ -1,0 +1,10 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* {
+    outline: none;
+}
+.rc-tooltip-hidden {
+    display: none;
+}
