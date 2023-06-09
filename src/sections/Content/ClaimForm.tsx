@@ -29,17 +29,13 @@ export const ClaimForm: FC = () => {
         ERROR_MESSAGES.INVALID_ADDRESS,
         isValidAddress
       )
-      .test(
-        "remaining",
-        "The amount you claimed cannot be greater than your remaining.",
-        (addressHash) => {
-          const remaining = remainingRef.current;
+      .test("remaining", ERROR_MESSAGES.INSUFFICIENT, (addressHash) => {
+        const remaining = remainingRef.current;
 
-          return (
-            !addressHash || !(typeof remaining === "number") || remaining > 0
-          );
-        }
-      ),
+        return (
+          !addressHash || !(typeof remaining === "number") || remaining > 0
+        );
+      }),
   });
   const {
     handleSubmit,
@@ -116,7 +112,9 @@ export const ClaimForm: FC = () => {
               className="text-gray-800 placeholder:text-gray-400 text-sm rounded py-3 px-2 w-full"
             />
             {!!values.addressHash && !!errors.addressHash && (
-              <div className="text-sm text-red mt-4">{errors.addressHash}</div>
+              <div className="text-sm text-red mt-4 text-center">
+                {errors.addressHash}
+              </div>
             )}
           </div>
         </div>
