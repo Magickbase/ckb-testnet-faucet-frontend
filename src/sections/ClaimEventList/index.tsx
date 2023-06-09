@@ -8,13 +8,13 @@ export const ClaimEventList: FC = () => {
   const { data: claimEvents } = useClaimEvents(queryAddress);
 
   return (
-    <div className="w-full max-w-[880px] p-4">
+    <div className="w-full max-w-[880px]  box-content px-4">
       <div className="flex justify-between w-full items-center py-8">
-        <h2 className="font-md text-[36px]">Claims</h2>
+        <h2 className=" text-3xl">Claims</h2>
         <div className="relative">
           <input
             placeholder="Search Address"
-            className="border rounded border-gray-200 placeholder:text-gray-400 text-sm px-2 py-3 h-10 w-[196px]"
+            className="border rounded border-gray-200 placeholder:text-gray-400 text-sm px-2 py-3 pr-8 h-10 w-[196px]"
             value={queryAddress}
             onChange={(e) => setQueryAddress(e.target.value)}
           />

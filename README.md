@@ -13,7 +13,7 @@ pnpm install
 ```
 ### Copy environment config
 ```
-cp .env.example .env.local
+cp .env .env.local
 ```
 ### Run the project
 ```bash
