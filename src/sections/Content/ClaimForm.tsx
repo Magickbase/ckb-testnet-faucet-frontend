@@ -93,7 +93,7 @@ export const ClaimForm: FC = () => {
   useEffect(() => {
     typeof remaining === "number" && validateField("addressHash");
   }, [remaining, validateField]);
-  const showAmountRadio = isValid && values.addressHash && !isRemainingLoading;
+  const showAmountRadio = isValid && values.addressHash;
   const canSubmit =
     isValid && !isRemainingLoading && !isSubmitting && !!values.addressHash;
 
@@ -167,14 +167,14 @@ export const ClaimForm: FC = () => {
                     {({ checked }) => (
                       <label
                         tabIndex={1}
-                        className={`inline-flex items-center cursor-pointer ${
+                        className={`inline-flex items-center ${
                           disabled
                             ? "text-gray-400 cursor-not-allowed"
-                            : "text-white"
+                            : "text-white  cursor-pointer"
                         }`}
                       >
                         <span
-                          className={`w-4 h-4 rounded-full border-white border-2 mr-1 ${
+                          className={`w-4 h-4 rounded-full border-2 mr-1 ${
                             disabled ? "border-gray-700" : "border-white"
                           } ${
                             checked
@@ -218,8 +218,8 @@ export const ClaimForm: FC = () => {
       <button
         type="submit"
         disabled={!canSubmit}
-        className={`w-30 lg:w-40 h-10 flex justify-center items-center rounded ${
-          canSubmit ? "bg-purple mt-9 lg:mt-11" : "bg-purple.disabled"
+        className={`w-30 lg:w-40 h-10 mt-9 lg:mt-11 flex justify-center items-center rounded ${
+          canSubmit ? "bg-purple" : "bg-purple.disabled"
         }`}
       >
         Claim
