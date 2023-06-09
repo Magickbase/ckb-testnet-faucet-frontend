@@ -29,17 +29,13 @@ export const ClaimForm: FC = () => {
         ERROR_MESSAGES.INVALID_ADDRESS,
         isValidAddress
       )
-      .test(
-        "remaining",
-        "The amount you claimed cannot be greater than your remaining.",
-        (addressHash) => {
-          const remaining = remainingRef.current;
+      .test("remaining", ERROR_MESSAGES.INSUFFICIENT, (addressHash) => {
+        const remaining = remainingRef.current;
 
-          return (
-            !addressHash || !(typeof remaining === "number") || remaining > 0
-          );
-        }
-      ),
+        return (
+          !addressHash || !(typeof remaining === "number") || remaining > 0
+        );
+      }),
   });
   const {
     handleSubmit,
@@ -93,17 +89,17 @@ export const ClaimForm: FC = () => {
   useEffect(() => {
     typeof remaining === "number" && validateField("addressHash");
   }, [remaining, validateField]);
-  const showAmountRadio = isValid && values.addressHash && !isRemainingLoading;
+  const showAmountRadio = isValid && values.addressHash;
   const canSubmit =
     isValid && !isRemainingLoading && !isSubmitting && !!values.addressHash;
 
   return (
     <form onSubmit={handleSubmit} className="flex flex-col items-center w-full">
-      <div className="w-full max-w-[524px] lg:ml-[-22px]">
-        <div className="flex items-center mb-8 flex-wrap">
+      <div className="w-full max-w-[524px] lg:ml-[-72px]">
+        <div className="flex mb-8 flex-wrap">
           <label
             htmlFor="addressHash"
-            className="inline-block text-sm mr-4 w-full mb-2 lg:w-18 lg:text-end lg:mb-0"
+            className="flex items-center text-sm mr-4 w-full lg:h-9 mb-2 lg:w-18 lg:text-end lg:mb-0"
           >
             To address
           </label>
@@ -115,8 +111,10 @@ export const ClaimForm: FC = () => {
               placeholder="Enter your Pudge wallet address"
               className="text-gray-800 placeholder:text-gray-400 text-sm rounded py-3 px-2 w-full"
             />
-            {!!values.addressHash && (
-              <div className="text-sm text-red mt-4">{errors.addressHash}</div>
+            {!!values.addressHash && !!errors.addressHash && (
+              <div className="text-sm text-red mt-4 text-center">
+                {errors.addressHash}
+              </div>
             )}
           </div>
         </div>
@@ -167,14 +165,14 @@ export const ClaimForm: FC = () => {
                     {({ checked }) => (
                       <label
                         tabIndex={1}
-                        className={`inline-flex items-center cursor-pointer ${
+                        className={`inline-flex items-center ${
                           disabled
                             ? "text-gray-400 cursor-not-allowed"
-                            : "text-white"
+                            : "text-white  cursor-pointer"
                         }`}
                       >
                         <span
-                          className={`w-4 h-4 rounded-full border-white border-2 mr-1 ${
+                          className={`w-4 h-4 rounded-full border-2 mr-1 ${
                             disabled ? "border-gray-700" : "border-white"
                           } ${
                             checked
@@ -218,8 +216,8 @@ export const ClaimForm: FC = () => {
       <button
         type="submit"
         disabled={!canSubmit}
-        className={`w-40 h-10 flex justify-center items-center rounded ${
-          canSubmit ? "bg-purple mt-11" : "bg-purple.disabled"
+        className={`w-30 lg:w-40 h-10 mt-9 lg:mt-11 flex justify-center items-center rounded ${
+          canSubmit ? "bg-purple" : "bg-purple.disabled"
         }`}
       >
         Claim

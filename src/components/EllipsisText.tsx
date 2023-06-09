@@ -44,36 +44,8 @@ export const EllipsisText: FC<{ text: string; className?: string }> = ({
       setClippedText(clippedText);
     }
 
-    //   div.className = `flex w-full fixed invisible ${className || ""}`;
-    //   const center = Math.floor(text.length / 2);
-    //   document.body.appendChild(div);
-    //   div.innerText = text;
-    //   if (div.clientWidth <= containerWidth) {
-    //     setClippedText(text);
-    //     document.body.removeChild(div);
-    //     return;
-    //   }
-    //   div.innerText = text;
-    //   let left = 0,
-    //     right = text.length - 1;
-    //   while (div.clientWidth < containerWidth && left < right) {
-    //     const removedLength = Math.floor((left + right) / 2);
-    //     const halfPartLength = Math.floor(removedLength / 2);
-    //     div.innerText = `${text.slice(0, center - halfPartLength)}...${text.slice(
-    //       center + halfPartLength
-    //     )}`;
-    //     if (div.clientWidth <= containerWidth) {
-    //       right = removedLength;
-    //     } else {
-    //       left = removedLength + 1;
-    //     }
-    //   }
-    //   document.body.removeChild(div);
-    //   setClippedText(div.innerText);
     container?.removeChild(span);
   }, [text, className, containerWidth, id]);
-
-  console.log(containerWidth);
 
   return (
     <span
