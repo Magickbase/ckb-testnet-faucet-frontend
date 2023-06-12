@@ -27,7 +27,7 @@ export const Content: FC = () => {
           (parseInt(balance) !== 0 ? "visible" : "invisible")
         }
       >
-        Faucet address balance is {numeral(balance).format("100,000.00")} CKB.
+        Faucet address balance is {numeral(balance).format("1,000,000.00")} CKB.
       </div>
     </section>
   );

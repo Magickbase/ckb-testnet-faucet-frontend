@@ -1,6 +1,6 @@
 import { FC, useEffect, useRef } from "react";
 import { RadioGroup } from "@headlessui/react";
-import Tooltip from "rc-tooltip";
+import * as Tooltop from "@radix-ui/react-tooltip";
 import numeral from "numeral";
 import { useFormik } from "formik";
 import * as Yup from "yup";
@@ -93,6 +93,24 @@ export const ClaimForm: FC = () => {
   const canSubmit =
     isValid && !isRemainingLoading && !isSubmitting && !!values.addressHash;
 
+  const tooltipEl = (
+    <Tooltop.Root delayDuration={0}>
+      <Tooltop.Trigger>
+        <QuestionIcon className="w-3 h-3 mx-1 cursor-pointer" />
+      </Tooltop.Trigger>
+      <Tooltop.Portal>
+        <Tooltop.Content>
+          <div className="relative rounded w-[212px] px-4 py-3 mb-4 text-sm text-gray-800 bg-white">
+            Your claimable amount now for this month is {formattedRemaining}{" "}
+            CKB.
+            <span className="absolute bottom-0 left-1/2 rotate-45 w-3 h-3 translate-x-[-50%] translate-y-1/2 rounded-sm bg-white " />
+          </div>
+          <Tooltip.Arrow className="TooltipArrow" />
+        </Tooltop.Content>
+      </Tooltop.Portal>
+    </Tooltop.Root>
+  );
+
   return (
     <form onSubmit={handleSubmit} className="flex flex-col items-center w-full">
       <div className="w-full max-w-[524px] lg:ml-[-72px]">
@@ -137,19 +155,7 @@ export const ClaimForm: FC = () => {
                   <span className="text-sm text-gray">
                     Remaining: {formattedRemaining}
                   </span>
-                  <Tooltip
-                    placement="top"
-                    overlayClassName="fixed text-gray-800 rounded"
-                    overlay={
-                      <div className="relative rounded w-[212px] px-4 py-3 mb-4 text-sm text-gray-800 bg-white">
-                        Your claimable amount now for this month is{" "}
-                        {formattedRemaining} CKB.
-                        <span className="absolute bottom-0 left-1/2 rotate-45 w-3 h-3 translate-x-[-50%] translate-y-1/2 rounded-sm bg-white " />
-                      </div>
-                    }
-                  >
-                    <QuestionIcon className="w-3 h-3 mx-1 cursor-pointer" />
-                  </Tooltip>
+                  {tooltipEl}
                 </div>
               )}
             </RadioGroup.Label>
@@ -195,19 +201,7 @@ export const ClaimForm: FC = () => {
               <span className="text-sm text-gray">
                 Remaining: {formattedRemaining}
               </span>
-              <Tooltip
-                placement="top"
-                overlayClassName="fixed text-gray-800 rounded"
-                overlay={
-                  <div className="relative rounded w-[212px] px-4 py-3 mb-4 text-sm text-gray-800 bg-white">
-                    Your claimable amount now for this month is{" "}
-                    {formattedRemaining} CKB.
-                    <span className="absolute bottom-0 left-1/2 rotate-45 w-3 h-3 translate-x-[-50%] translate-y-1/2 rounded-sm bg-white " />
-                  </div>
-                }
-              >
-                <QuestionIcon className="w-3 h-3 mx-1 cursor-pointer" />
-              </Tooltip>
+              {tooltipEl}
             </div>
           )}
         </div>
