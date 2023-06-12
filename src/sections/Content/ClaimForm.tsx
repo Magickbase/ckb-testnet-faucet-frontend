@@ -12,12 +12,15 @@ import {
 } from "../../hooks/useDataAPI";
 import { isValidAddress } from "../../utils/isValidAddress";
 import axios from "axios";
+import { Alert, AlertHandles } from "../../components/Alert";
 
 const ERROR_MESSAGES = {
   INSUFFICIENT:
     "The CKB received at this address has reached 300,000 CKB for this month. Please retry after the 1st of next month.",
   INVALID_ADDRESS: "Invalid address",
 };
+
+const CLAIM_AMOUNTS = [10_000, 100_000, 300_000];
 
 export const ClaimForm: FC = () => {
   const { mutate: refreshClaimEvents } = useClaimEvents();
@@ -53,7 +56,7 @@ export const ClaimForm: FC = () => {
       amount: 10000,
     },
     validationSchema,
-    onSubmit: async (values, { validateField }) => {
+    onSubmit: async (values) => {
       try {
         await axios.post("/claim_events", {
           claim_event: {
@@ -63,10 +66,7 @@ export const ClaimForm: FC = () => {
         });
         await refreshClaimEvents();
         await refreshRemaining();
-        setFieldValue("amount", 10000);
-
-        // Instantly validate the field will validate using a stale amount
-        setTimeout(() => validateField("addressHash"), 500);
+        alertRef.current?.open();
       } catch (e) {
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
         const errorDetail: string | undefined = (e as any)?.response?.data
@@ -91,13 +91,30 @@ export const ClaimForm: FC = () => {
   useEffect(() => {
     typeof remaining === "number" && validateField("addressHash");
   }, [remaining, validateField]);
+
+  // downlevel amount selection
+  useEffect(() => {
+    if (typeof remaining === "number" && values.amount > remaining) {
+      const amount = [...CLAIM_AMOUNTS]
+        .reverse()
+        .find((item) => item <= remaining);
+      if (amount) {
+        setFieldValue("amount", amount);
+      } else {
+        setFieldError("amount", ERROR_MESSAGES.INSUFFICIENT);
+      }
+    }
+  }, [remaining, setFieldError, setFieldValue, values.amount]);
+
+  const alertRef = useRef<AlertHandles>(null);
+
   const showAmountRadio = isValid && values.addressHash;
   const canSubmit =
     isValid && !isRemainingLoading && !isSubmitting && !!values.addressHash;
 
   const tooltipEl = (
     <Tooltip.Root delayDuration={0}>
-      <Tooltip.Trigger>
+      <Tooltip.Trigger type="button">
         <QuestionIcon className="w-3 h-3 mx-1 cursor-pointer" />
       </Tooltip.Trigger>
       <Tooltip.Portal>
@@ -119,6 +136,9 @@ export const ClaimForm: FC = () => {
 
   return (
     <form onSubmit={handleSubmit} className="flex flex-col items-center w-full">
+      <Alert ref={alertRef} type="success">
+        Claim Success
+      </Alert>
       <div className="w-full max-w-[524px] lg:ml-[-72px]">
         <div className="flex mb-8 flex-wrap">
           <label
@@ -132,14 +152,19 @@ export const ClaimForm: FC = () => {
               autoFocus
               onChange={handleChange}
               id="addressHash"
+              autoComplete="off"
               placeholder="Enter your Pudge wallet address"
               className="text-gray-800 placeholder:text-gray-400 text-sm rounded py-3 px-2 w-full"
             />
-            {!!values.addressHash && !!errors.addressHash && (
-              <div className="text-sm text-red mt-4 text-center">
-                {errors.addressHash}
-              </div>
-            )}
+            <div
+              className={`text-sm text-red mt-4 text-center h-4 ${
+                !!values.addressHash && !!errors.addressHash
+                  ? "visible"
+                  : "invisible"
+              }`}
+            >
+              {errors.addressHash}
+            </div>
           </div>
         </div>
 
@@ -166,7 +191,7 @@ export const ClaimForm: FC = () => {
               )}
             </RadioGroup.Label>
             <div className="flex flex-1 justify-between mr-3">
-              {[10_000, 100_000, 300_000].map((amount) => {
+              {CLAIM_AMOUNTS.map((amount) => {
                 const disabled = Number(remaining || 0) < amount;
                 return (
                   <RadioGroup.Option

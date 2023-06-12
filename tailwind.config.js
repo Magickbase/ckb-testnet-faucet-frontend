@@ -29,7 +29,12 @@ export default {
         },
         'orange': '#F6C344',
         'green': '#53A551',
-        'red': '#FA504F'
+        'red': '#FA504F',
+
+        'success': '#00CC9B',
+        'warning': '#F68C2A',
+        'error': '#C04641'
+
       },
       lineHeight: {
         '12': '3rem',
@@ -43,6 +48,9 @@ export default {
       }
     },
   },
-  plugins: [],
+  plugins: [
+    // eslint-disable-next-line no-undef
+    require('@tailwindcss/forms'),
+  ],
 }
 
