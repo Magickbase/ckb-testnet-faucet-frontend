@@ -1,6 +1,6 @@
 import { FC, useEffect, useRef } from "react";
 import { RadioGroup } from "@headlessui/react";
-import * as Tooltop from "@radix-ui/react-tooltip";
+import * as Tooltip from "@radix-ui/react-tooltip";
 import numeral from "numeral";
 import { useFormik } from "formik";
 import * as Yup from "yup";
@@ -63,7 +63,9 @@ export const ClaimForm: FC = () => {
         });
         await refreshClaimEvents();
         await refreshRemaining();
+        setFieldValue("amount", 10000);
 
+        // Instantly validate the field will validate using a stale amount
         setTimeout(() => validateField("addressHash"), 500);
       } catch (e) {
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -94,21 +96,25 @@ export const ClaimForm: FC = () => {
     isValid && !isRemainingLoading && !isSubmitting && !!values.addressHash;
 
   const tooltipEl = (
-    <Tooltop.Root delayDuration={0}>
-      <Tooltop.Trigger>
+    <Tooltip.Root delayDuration={0}>
+      <Tooltip.Trigger>
         <QuestionIcon className="w-3 h-3 mx-1 cursor-pointer" />
-      </Tooltop.Trigger>
-      <Tooltop.Portal>
-        <Tooltop.Content>
-          <div className="relative rounded w-[212px] px-4 py-3 mb-4 text-sm text-gray-800 bg-white">
+      </Tooltip.Trigger>
+      <Tooltip.Portal>
+        <Tooltip.Content>
+          <div className="relative rounded w-[212px] px-4 py-3 text-sm text-gray-800 bg-white">
             Your claimable amount now for this month is {formattedRemaining}{" "}
             CKB.
-            <span className="absolute bottom-0 left-1/2 rotate-45 w-3 h-3 translate-x-[-50%] translate-y-1/2 rounded-sm bg-white " />
           </div>
-          <Tooltip.Arrow className="TooltipArrow" />
-        </Tooltop.Content>
-      </Tooltop.Portal>
-    </Tooltop.Root>
+          <Tooltip.Arrow
+            className="text-white mb-1"
+            style={{ fill: "currentcolor" }}
+            width={16}
+            height={8}
+          />
+        </Tooltip.Content>
+      </Tooltip.Portal>
+    </Tooltip.Root>
   );
 
   return (
