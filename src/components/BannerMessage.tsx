@@ -2,18 +2,18 @@ import { Root, Title } from "@radix-ui/react-toast";
 import { useImperativeHandle, forwardRef, useEffect } from "react";
 import { useToggle } from "react-use";
 
-export type AlertProps = {
+export type BannerMessageProps = {
   children: React.ReactNode;
   type: "success" | "error";
   timeout?: number;
 };
 
-export type AlertHandles = {
+export type BannerHandles = {
   open: () => void;
   close: () => void;
 };
 
-export const Alert = forwardRef<AlertHandles, AlertProps>(
+export const BannerMessage = forwardRef<BannerHandles, BannerMessageProps>(
   ({ children, type, timeout = 3000 }, ref) => {
     const [open, toggleOpen] = useToggle(false);
 

@@ -12,7 +12,7 @@ import {
 } from "../../hooks/useDataAPI";
 import { isValidAddress } from "../../utils/isValidAddress";
 import axios from "axios";
-import { Alert, AlertHandles } from "../../components/Alert";
+import { BannerMessage, BannerHandles } from "../../components/BannerMessage";
 
 const ERROR_MESSAGES = {
   INSUFFICIENT:
@@ -106,7 +106,7 @@ export const ClaimForm: FC = () => {
     }
   }, [remaining, setFieldError, setFieldValue, values.amount]);
 
-  const alertRef = useRef<AlertHandles>(null);
+  const alertRef = useRef<BannerHandles>(null);
 
   const showAmountRadio = isValid && values.addressHash;
   const canSubmit =
@@ -136,9 +136,9 @@ export const ClaimForm: FC = () => {
 
   return (
     <form onSubmit={handleSubmit} className="flex flex-col items-center w-full">
-      <Alert ref={alertRef} type="success">
+      <BannerMessage ref={alertRef} type="success">
         Claim Success
-      </Alert>
+      </BannerMessage>
       <div className="w-full max-w-[524px] lg:ml-[-72px]">
         <div className="flex mb-8 flex-wrap">
           <label
@@ -159,8 +159,8 @@ export const ClaimForm: FC = () => {
             <div
               className={`text-sm text-red mt-4 text-center h-4 ${
                 !!values.addressHash && !!errors.addressHash
-                  ? "visible"
-                  : "invisible"
+                  ? "block"
+                  : "hidden"
               }`}
             >
               {errors.addressHash}

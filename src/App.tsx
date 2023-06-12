@@ -10,7 +10,7 @@ function App() {
       <Tooltop.Provider>
         <div className="flex flex-col items-center">
           <Header />
-          <div className="w-full top-16 fixed">
+          <div className="w-full top-16 fixed z-50">
             <Toast.Viewport />
           </div>
           <Content />
