@@ -133,7 +133,7 @@ export const Footer: FC = () => {
         </div>
       </div>
       <p className="text-xs self-start leading-5 sm:leading-[14px] sm:self-center text-gray-400 text-center w-[200px] sm:w-fit">
-        Copyright © {year} Nervos Foundation.All Rights Reserved.
+        Copyright © {year} Nervos Foundation. All Rights Reserved.
       </p>
     </footer>
   );
