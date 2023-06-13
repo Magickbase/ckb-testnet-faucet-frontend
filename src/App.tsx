@@ -1,14 +1,23 @@
 import { ClaimEventList } from "./sections/ClaimEventList";
 import { Content } from "./sections/Content";
 import { Header } from "./sections/Header";
+import * as Tooltop from "@radix-ui/react-tooltip";
+import * as Toast from "@radix-ui/react-toast";
 
 function App() {
   return (
-    <div className="flex flex-col items-center">
-      <Header />
-      <Content />
-      <ClaimEventList />
-    </div>
+    <Toast.Provider>
+      <Tooltop.Provider>
+        <div className="flex flex-col items-center">
+          <Header />
+          <div className="w-full top-16 fixed z-50">
+            <Toast.Viewport />
+          </div>
+          <Content />
+          <ClaimEventList />
+        </div>
+      </Tooltop.Provider>
+    </Toast.Provider>
   );
 }
 

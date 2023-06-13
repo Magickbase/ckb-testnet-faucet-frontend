@@ -6,7 +6,7 @@ import numeral from "numeral";
 export const Content: FC = () => {
   const { data: balance } = useOfficialAccountBalance();
   return (
-    <section className="bg-[url('/background.jpg')] bg-[50%] bg-cover h-[582px] lg:h-[648px] flex flex-col items-center text-white px-4 w-full">
+    <section className="bg-[url('/background.jpg')] bg-[50%] bg-cover h-[582px] lg:h-[648px] flex flex-col items-center text-white px-4 w-full mt-8">
       <img
         className="w-[80px] h-[80px] lg:w-[120px] lg:h-[120px] mb-8 mt-[56px] lg:mt-[104px]"
         alt="Nervos"
@@ -27,7 +27,7 @@ export const Content: FC = () => {
           (parseInt(balance) !== 0 ? "visible" : "invisible")
         }
       >
-        Faucet address balance is {numeral(balance).format("100,000.00")} CKB.
+        Faucet address balance is {numeral(balance).format("1,000,000.00")} CKB.
       </div>
     </section>
   );
