@@ -139,7 +139,7 @@ export const ClaimForm: FC = () => {
       <BannerMessage ref={alertRef} type="success">
         Claim Success
       </BannerMessage>
-      <div className="w-full max-w-[524px] lg:ml-[-72px]">
+      <div className="w-full max-w-[524px] lg:ml-[-84px]">
         <div className="flex mb-8 flex-wrap">
           <label
             htmlFor="addressHash"
