@@ -1,17 +1,17 @@
 import { ClaimEventItem } from "./ClaimEventItem";
 import { useState, FC } from "react";
-import CloseIcon from "../../assets/close.svg";
-import { useClaimEvents } from "../../hooks/useDataAPI";
+import CloseIcon from "@/assets/close.svg";
+import { useClaimEvents } from "@/hooks/useDataAPI";
 
 export const ClaimEventList: FC = () => {
   const [queryAddress, setQueryAddress] = useState("");
   const { data: claimEvents } = useClaimEvents(queryAddress);
 
   return (
-    <div className="px-4 w-full flex justify-center">
+    <div className="px-4 w-full flex justify-center min-h-[calc(100vh-582px)] lg:min-h-[calc(100vh-712px)]">
       <div className="w-full max-w-[880px]">
         <div className="flex justify-between w-full items-center py-6 lg:py-8">
-          <h2 className="text-xl lg:text-3xl">Claims</h2>
+          <h2 className="text-lg lg:text-3xl">Claims</h2>
           <div className="relative">
             <input
               placeholder="Search Address"

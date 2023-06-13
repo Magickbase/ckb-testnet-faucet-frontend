@@ -38,7 +38,7 @@ export const BannerMessage = forwardRef<BannerHandles, BannerMessageProps>(
         className={`w-full lg:h-[72px] h-11 flex items-center justify-center ${bgType} text-white`}
         open={open}
       >
-        <Title className="text:sm lg:text-xl">{children}</Title>
+        <Title className="text:sm lg:text-lg">{children}</Title>
       </Root>
     );
   }

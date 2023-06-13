@@ -20,6 +20,7 @@ export default {
         'purple.disabled': '#4B2A63',
         'gray': {
           50: '#F0F0F0',
+          75: '#A1A1A1',
           100: '#DEDEDE',
           200: '#CCCCCC',
           400: '#999999',
@@ -40,9 +41,12 @@ export default {
         '12': '3rem',
       },
       fontSize: {
+        xs: ['12px', '14px'],
         sm: ['14px', '16px'],
         base: ['16px', '18px'],
-        "xl": ['20px', '24px'],
+        "lg": ['20px', '24px'],
+        'xl': ['28px', '32px'],
+        '2xl': ['28px', '32px'],
         '3xl': ['32px', '38px'],
         '4xl': ['36px', '48px']
       }

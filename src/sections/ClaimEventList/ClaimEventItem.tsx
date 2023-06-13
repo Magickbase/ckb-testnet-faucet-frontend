@@ -1,7 +1,7 @@
 import { FC } from "react";
-import { ClaimEventAttributes } from "../../api";
+import { ClaimEventAttributes } from "@/api";
 import dayjs from "dayjs";
-import { EllipsisText } from "../../components/EllipsisText";
+import { EllipsisText } from "@/components/EllipsisText";
 type ClaimEventItemProps = {
   event: ClaimEventAttributes;
 };
