@@ -36,8 +36,8 @@ const FOOTER_PLAIN_LINKS = {
         href: "https://github.com/nervosnetwork/rfcs/blob/master/rfcs/0002-ckb/0002-ckb.md",
       },
       {
-        title: "Faucet",
-        href: "https://faucet.nervos.org/",
+        title: "CKB Explorer",
+        href: "https://pudge.explorer.nervos.org/",
       },
       {
         title: "Submit Token Info",
@@ -99,7 +99,7 @@ const renderFooterLinks = ({
           key={index}
           className="flex flex-col text-gray-400 hover:text-purple transition-all  mb-4"
         >
-          <a href={href} target="_blank">
+          <a href={href} ref="noopener noreferrer" target="_blank">
             {title}
           </a>
         </li>
@@ -123,6 +123,7 @@ export const Footer: FC = () => {
             <a
               key={index}
               href={href}
+              ref="noopener noreferrer"
               target="_blank"
               className="flex flex-col text-gray-75 hover:text-purple transition-all h-[58px] w-[36px] items-center"
             >
