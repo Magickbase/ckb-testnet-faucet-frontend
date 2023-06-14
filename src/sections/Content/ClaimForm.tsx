@@ -134,6 +134,15 @@ export const ClaimForm: FC = () => {
     </Tooltip.Root>
   );
 
+  useEffect(() => {
+    const sp = new URLSearchParams(window.location.search);
+    const address = sp.get("address");
+    if (address) {
+      setFieldValue("addressHash", address);
+      validateField("addressHash");
+    }
+  }, [setFieldValue, validateField]);
+
   return (
     <form onSubmit={handleSubmit} className="flex flex-col items-center w-full">
       <BannerMessage ref={alertRef} type="success">
@@ -151,6 +160,7 @@ export const ClaimForm: FC = () => {
             <input
               autoFocus
               onChange={handleChange}
+              value={values.addressHash}
               id="addressHash"
               autoComplete="off"
               placeholder="Enter your Pudge wallet address"
