@@ -99,7 +99,7 @@ const renderFooterLinks = ({
           key={index}
           className="flex flex-col text-gray-400 hover:text-purple transition-all  mb-4"
         >
-          <a href={href} ref="noopener noreferrer" target="_blank">
+          <a href={href} rel="noopener noreferrer" target="_blank">
             {title}
           </a>
         </li>
@@ -123,7 +123,7 @@ export const Footer: FC = () => {
             <a
               key={index}
               href={href}
-              ref="noopener noreferrer"
+              rel="noopener noreferrer"
               target="_blank"
               className="flex flex-col text-gray-75 hover:text-purple transition-all h-[58px] w-[36px] items-center"
             >
