@@ -3,6 +3,7 @@ import { Content } from "./sections/Content";
 import { Header } from "./sections/Header";
 import * as Tooltop from "@radix-ui/react-tooltip";
 import * as Toast from "@radix-ui/react-toast";
+import { Footer } from "./sections/Footer";
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
           </div>
           <Content />
           <ClaimEventList />
+          <Footer />
         </div>
       </Tooltop.Provider>
     </Toast.Provider>

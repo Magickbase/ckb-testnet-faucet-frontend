@@ -1,7 +1,7 @@
 import useSWR from "swr";
 import axios from "axios";
-import { MixedResponse } from "../api";
-import { isValidAddress } from "../utils/isValidAddress";
+import { MixedResponse } from "@/api";
+import { isValidAddress } from "@/utils/isValidAddress";
 
 type ClaimEventResponse = MixedResponse["claimEvents"];
 
