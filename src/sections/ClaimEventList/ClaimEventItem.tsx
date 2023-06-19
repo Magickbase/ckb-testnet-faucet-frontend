@@ -42,7 +42,7 @@ export const ClaimEventItem: FC<ClaimEventItemProps> = ({ event }) => {
         </div>
         <div className="flex justify-between mt-3">
           <span
-            className={`rounded p-1 text-xs font-medium ${
+            className={`rounded p-1 text-xs font-medium capitalize ${
               status === "pending"
                 ? "bg-orange text-gray-800"
                 : `bg-green text-white`
