@@ -15,6 +15,8 @@ export const ClaimEventItem: FC<ClaimEventItemProps> = ({ event }) => {
     <div className="flex flex-col rounded border w-full mb-4">
       <div className="flex justify-between px-8 py-4 text-sm bg-gray-50 border-b border-r-gray-200">
         <a
+          target="_blank"
+          rel="noreferrer noopener"
           href={txHash ? `${TESTNET_HOST}/transaction/${txHash}` : "#"}
           className="text-purple font-medium w-[calc(100%-168px)]"
         >
@@ -27,6 +29,8 @@ export const ClaimEventItem: FC<ClaimEventItemProps> = ({ event }) => {
       <div className="flex flex-col justify-between text-sm bg-white px-8 py-5">
         <div className="flex justify-between w-full">
           <a
+            target="_blank"
+            rel="noreferrer noopener"
             href={`${TESTNET_HOST}/address/${addressHash}`}
             className="text-purple text-sm font-medium w-[calc(100%-168px)]"
           >
