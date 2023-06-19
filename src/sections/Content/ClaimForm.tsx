@@ -5,14 +5,11 @@ import numeral from "numeral";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 
-import QuestionIcon from "../../assets/query.svg";
-import {
-  useClaimEvents,
-  useUserAddressRemaining,
-} from "../../hooks/useDataAPI";
-import { isValidAddress } from "../../utils/isValidAddress";
+import QuestionIcon from "@/assets/query.svg";
+import { useClaimEvents, useUserAddressRemaining } from "@/hooks/useDataAPI";
+import { isValidAddress } from "@/utils/isValidAddress";
 import axios from "axios";
-import { BannerMessage, BannerHandles } from "../../components/BannerMessage";
+import { BannerMessage, BannerHandles } from "@/components/BannerMessage";
 
 const ERROR_MESSAGES = {
   INSUFFICIENT:
