@@ -28,14 +28,7 @@ export const ClaimForm: FC = () => {
         "address validation",
         ERROR_MESSAGES.INVALID_ADDRESS,
         isValidAddress
-      )
-      .test("remaining", ERROR_MESSAGES.INSUFFICIENT, (addressHash) => {
-        const remaining = remainingRef.current;
-
-        return (
-          !addressHash || !(typeof remaining === "number") || remaining > 0
-        );
-      }),
+      ),
   });
   const {
     handleSubmit,
@@ -88,20 +81,6 @@ export const ClaimForm: FC = () => {
   useEffect(() => {
     typeof remaining === "number" && validateField("addressHash");
   }, [remaining, validateField]);
-
-  // downlevel amount selection
-  useEffect(() => {
-    if (typeof remaining === "number" && values.amount > remaining) {
-      const amount = [...CLAIM_AMOUNTS]
-        .reverse()
-        .find((item) => item <= remaining);
-      if (amount) {
-        setFieldValue("amount", amount);
-      } else {
-        setFieldError("amount", ERROR_MESSAGES.INSUFFICIENT);
-      }
-    }
-  }, [remaining, setFieldError, setFieldValue, values.amount]);
 
   const alertRef = useRef<BannerHandles>(null);
 
@@ -198,40 +177,23 @@ export const ClaimForm: FC = () => {
               )}
             </RadioGroup.Label>
             <div className="flex flex-1 justify-between mr-3">
-              {CLAIM_AMOUNTS.map((amount) => {
-                const disabled = Number(remaining || 0) < amount;
-                return (
-                  <RadioGroup.Option
-                    disabled={disabled}
-                    value={amount}
-                    key={amount}
-                  >
-                    {({ checked }) => (
-                      <label
-                        tabIndex={1}
-                        className={`inline-flex items-center ${
-                          disabled
-                            ? "text-gray-400 cursor-not-allowed"
-                            : "text-white  cursor-pointer"
+              {CLAIM_AMOUNTS.map((amount) => (
+                <RadioGroup.Option value={amount} key={amount}>
+                  {({ checked }) => (
+                    <label
+                      tabIndex={1}
+                      className={`inline-flex items-center text-white cursor-pointer`}
+                    >
+                      <span
+                        className={`w-4 h-4 rounded-full border-2 mr-1 border-white ${
+                          checked ? "bg-purple" : ""
                         }`}
-                      >
-                        <span
-                          className={`w-4 h-4 rounded-full border-2 mr-1 ${
-                            disabled ? "border-gray-700" : "border-white"
-                          } ${
-                            checked
-                              ? "bg-purple"
-                              : disabled
-                              ? "bg-gray-800"
-                              : ""
-                          }`}
-                        />
-                        <span>{numeral(amount).format("1,000")}</span>
-                      </label>
-                    )}
-                  </RadioGroup.Option>
-                );
-              })}
+                      />
+                      <span>{numeral(amount).format("1,000")}</span>
+                    </label>
+                  )}
+                </RadioGroup.Option>
+              ))}
             </div>
           </RadioGroup>
           {formattedRemaining && (
