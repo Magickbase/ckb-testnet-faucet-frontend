@@ -13,7 +13,7 @@ import { BannerMessage, BannerHandles } from "@/components/BannerMessage";
 
 const ERROR_MESSAGES = {
   INSUFFICIENT:
-    "The CKB received at this address has reached 300,000 CKB for this month. Please retry after the 1st of next month.",
+    "The CKB received at this address has reached 300,000 CKB for this month. Please retry next month.",
   INVALID_ADDRESS: "Invalid address",
 };
 
@@ -96,7 +96,7 @@ export const ClaimForm: FC = () => {
       <Tooltip.Portal>
         <Tooltip.Content>
           <div className="relative rounded w-[212px] px-4 py-3 text-sm text-gray-800 bg-white">
-            Your claimable amount now for this month is {formattedRemaining}{" "}
+            Your claimable amount for this month is {formattedRemaining}{" "}
             CKB.
           </div>
           <Tooltip.Arrow
@@ -130,7 +130,7 @@ export const ClaimForm: FC = () => {
             htmlFor="addressHash"
             className="flex items-center text-sm mr-4 w-full lg:h-9 mb-2 lg:w-18 lg:text-end lg:mb-0"
           >
-            To address
+            Send CKB to
           </label>
           <div className="flex-1 min-w-[342px]">
             <input
@@ -139,7 +139,7 @@ export const ClaimForm: FC = () => {
               value={values.addressHash}
               id="addressHash"
               autoComplete="off"
-              placeholder="Enter your Pudge wallet address"
+              placeholder="Enter your wallet address (ckt...)"
               className="text-gray-800 placeholder:text-gray-400 text-sm rounded py-3 px-2 w-full"
             />
             <div
