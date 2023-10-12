@@ -16,9 +16,7 @@ export const Content: FC = () => {
         Nervos Pudge Faucet
       </h1>
       <p className="font-sans text-center leading-6 lg:leading-4 text-[#cccccc] font-normal text-sm mb-6 lg:mb-11">
-        Every address can claim a fixed amount of 300,000 CKB in a month. The
-        claimable amount will monthly update on the first day when you claim on
-        this site.
+        Every address can claim a maximum of 300,000 CKB per calendar month.
       </p>
       <ClaimForm />
       <div
@@ -27,7 +25,7 @@ export const Content: FC = () => {
           (parseInt(balance) !== 0 ? "visible" : "invisible")
         }
       >
-        Faucet address balance is {numeral(balance).format("1,000,000.00")} CKB.
+        Faucet's current balance is {numeral(balance).format("1,000,000.00")} CKB.
       </div>
     </section>
   );
