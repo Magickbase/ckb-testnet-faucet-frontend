@@ -119,7 +119,7 @@ export const ClaimForm: FC = () => {
         <div className="flex mb-8 flex-wrap">
           <label
             htmlFor="addressHash"
-            className="flex items-center text-sm mr-4 w-full lg:h-9 mb-2 lg:w-18 lg:text-end lg:mb-0"
+            className="flex whitespace-nowrap items-center text-sm mr-4 w-full lg:h-9 mb-2 lg:w-18 lg:text-end lg:mb-0"
           >
             Send CKB to
           </label>
