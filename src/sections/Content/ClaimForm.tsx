@@ -17,7 +17,7 @@ const ERROR_MESSAGES = {
   INVALID_ADDRESS: "Invalid address",
 };
 
-const CLAIM_AMOUNTS = [10_000, 100_000, 300_000];
+const CLAIM_AMOUNTS = [10_000, 100_000, /* 300_000 */];
 
 export const ClaimForm: FC = () => {
   const { mutate: refreshClaimEvents } = useClaimEvents();
