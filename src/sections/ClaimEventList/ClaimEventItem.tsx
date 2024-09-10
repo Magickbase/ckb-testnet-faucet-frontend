@@ -2,11 +2,10 @@ import { FC } from "react";
 import { ClaimEventAttributes } from "@/api";
 import dayjs from "dayjs";
 import { EllipsisText } from "@/components/EllipsisText";
+import CopyButton from "@/components/CopyButton";
 type ClaimEventItemProps = {
   event: ClaimEventAttributes;
 };
-
-const TESTNET_HOST = import.meta.env.VITE_TESTNET_HOST;
 
 export const ClaimEventItem: FC<ClaimEventItemProps> = ({ event }) => {
   const { addressHash, txHash, status, timestamp, capacity, fee } = event;
@@ -14,28 +13,20 @@ export const ClaimEventItem: FC<ClaimEventItemProps> = ({ event }) => {
   return (
     <div className="flex flex-col rounded border w-full mb-4 overflow-y-hidden">
       <div className="flex justify-between px-8 py-4 text-sm bg-gray-50 border-b border-gray-200">
-        <a
-          target="_blank"
-          rel="noreferrer noopener"
-          href={txHash ? `${TESTNET_HOST}/transaction/${txHash}` : "#"}
-          className="text-purple font-mono font-medium w-[calc(100%-168px)]"
-        >
+        <span className="flex items-center text-gray-800 font-mono font-medium w-[calc(100%-168px)]">
           {txHash ? <EllipsisText text={txHash} /> : "-"}
-        </a>
+          {txHash ? <CopyButton content={txHash} className="ml-4" /> : null}
+        </span>
         <div className="text-gray-400 whitespace-nowrap">
           {dayjs.unix(timestamp).format("YYYY/MM/DD HH:mm:ss")}
         </div>
       </div>
       <div className="flex flex-col justify-between text-sm bg-white px-8 py-5">
         <div className="flex justify-between w-full">
-          <a
-            target="_blank"
-            rel="noreferrer noopener"
-            href={`${TESTNET_HOST}/address/${addressHash}`}
-            className="text-purple font-mono text-sm font-medium w-[calc(100%-168px)]"
-          >
+          <span className="flex items-center text-gray-800 font-mono text-sm font-medium w-[calc(100%-168px)]">
             <EllipsisText text={addressHash} />
-          </a>
+            <CopyButton content={addressHash} className="ml-4" />
+          </span>
           <div className="text-base" title="Claimed capacity">
             {capacity} CKB
           </div>

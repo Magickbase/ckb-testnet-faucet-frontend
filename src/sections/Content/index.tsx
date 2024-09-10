@@ -13,7 +13,7 @@ export const Content: FC = () => {
         src="/ckb-n.png"
       />
       <h1 className="font-sans text-lg lg:text-4xl font-medium mb-3 lg:mb-4">
-        Nervos Pudge Faucet
+        Nervos Preview Chain Faucet
       </h1>
       <p className="font-sans text-center leading-6 lg:leading-4 text-[#cccccc] font-normal text-sm mb-6 lg:mb-11">
         Every address can claim a maximum of 300,000 CKB per calendar month.
@@ -25,7 +25,8 @@ export const Content: FC = () => {
           (parseInt(balance) !== 0 ? "visible" : "invisible")
         }
       >
-        Faucet's current balance is {numeral(balance).format("1,000,000.00")} CKB.
+        Faucet's current balance is {numeral(balance).format("1,000,000.00")}{" "}
+        CKB.
       </div>
     </section>
   );
