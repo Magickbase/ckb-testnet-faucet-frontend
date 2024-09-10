@@ -10,6 +10,17 @@ export const Header: FC = () => {
       >
         <img src="/ckb_logo.png" alt="logo" className="w-[104px] h-[28px]" />
       </a>
+      <nav className="ml-auto">
+        <a
+          href="https://preview-faucet.magickbase.com/"
+          title="preview chain"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="text-gray-300"
+        >
+          Preview Chain Faucet
+        </a>
+      </nav>
     </header>
   );
 };
